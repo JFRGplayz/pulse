@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pulse | Modern Music Player</title>
+
+    <meta name="description" content="Pulse is a modern web-based music player built with HTML, CSS, and JavaScript.">
+    <meta name="keywords" content="music player, audio player, HTML, CSS, JavaScript, Pulse">
+    <meta name="author" content="Your Name">
+    <meta name="theme-color" content="#1DB954">
+
+    <style>
+      body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.player {
+  width: 320px;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+}
+    </style>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+  </head>
+  <body>
+    <div class="player">
+      <img id="cover" src="cover.jpg" alt="Album Cover">
+
+      <h2 id="title">Song Title</h2>
+      <p id="artist">Artist Name</p>
+
+      <audio id="audio"></audio>
+
+      <input type="range" id="progress" value="0">
+
+      <div class="controls">
+         <button id="prev">⏮</button>
+         <button id="play">▶</button>
+         <button id="next">⏭</button>
+      </div>
+    </div>
+    <script>
+      const songs = [
+  {
+    title: "Song 1",
+    artist: "Artist 1",
+    src: "songs/song1.mp3",
+    cover: "covers/song1.jpg"
+  },
+  {
+    title: "Song 2",
+    artist: "Artist 2",
+    src: "songs/song2.mp3",
+    cover: "covers/song2.jpg"
+  }
+];
+
+let currentSong = 0;
+
+const audio = document.getElementById("audio");
+const title = document.getElementById("title");
+const artist = document.getElementById("artist");
+const cover = document.getElementById("cover");
+const playBtn = document.getElementById("play");
+
+function loadSong(index) {
+  audio.src = songs[index].src;
+  title.textContent = songs[index].title;
+  artist.textContent = songs[index].artist;
+  cover.src = songs[index].cover;
+}
+
+loadSong(currentSong);
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+    playBtn.textContent = "⏸";
+  } else {
+    audio.pause();
+    playBtn.textContent = "▶";
+  }
+});
+    </script>
+  </body>
+</html>
